@@ -72,7 +72,6 @@ function shuffle(array) {
     let shuffledArray = []
     let usedIndexes = []
     let i = 0
-
     while (i < array.length) {
         let randomIndex = Math.floor(Math.random() * array.length)
         if (!usedIndexes.includes(randomIndex)) {
@@ -81,7 +80,6 @@ function shuffle(array) {
             i++
         }
     }
-    
     return shuffledArray
 }
 
@@ -89,12 +87,13 @@ function dealPlayersCards(players) {
     gameDeck = shuffle(gameDeck)
     currentDeck = [...gameDeck]
 
+    console.log(currentDeck)
+
     players.forEach(player => {
         const card1 = currentDeck.pop()
         const card2 = currentDeck.pop()
         player.cards = [card1, card2] 
     })
-    
     return 'Player cards dealed!'
 } 
 
@@ -103,20 +102,41 @@ function dealFlopCards() {
     const card2 = currentDeck.pop()
     const card3 = currentDeck.pop()
     turnedCards = [card1, card2, card3]
-
     return 'Flop cards dealed!'
 }
 
-console.log(gameDeck)
+function dealTurnCards() {
+    turnedCards.push(currentDeck.pop())
+    return 'Turn card dealed!'
+}
+
+function dealRiverCards() {
+    turnedCards.push(currentDeck.pop())
+    return 'River card dealed!'
+}
 
 const player1 = {}
 const player2 = {}
 
-console.log(dealPlayersCards([player1, player2]))
+console.log(gameDeck.length)
 
-console.log(currentDeck.length)
+console.log(dealPlayersCards([player1, player2]))
 
 console.log(player1)
 console.log(player2)
 
+console.log(currentDeck.length)
+
 console.log(dealFlopCards())
+
+console.log(currentDeck.length)
+
+console.log(dealTurnCards())
+
+console.log(currentDeck.length)
+
+console.log(dealRiverCards())
+
+console.log(currentDeck.length)
+
+console.log(turnedCards)
